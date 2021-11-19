@@ -1,0 +1,23 @@
+{% extends 'stockapp/base.html' %}
+{% block title %}
+Login
+{% endblock %}
+{% block body %}
+{% for message in messages %}
+<strong> {{ message }}</strong>
+{% endfor %}
+<div class="container">
+   <form action="{% url 'signin' %}" method="post">
+      {% csrf_token %} <!--to prevent csrf attack while using POST method -->
+      <label>Username: </label>
+      <input type="text" id="uname" name="uname" placeholder="Enter your username" required>  </br>
+
+       <label>Password: </label>
+       <input type="password" id="pass1" name="pass1" placeholder="Enter your password" required> </br>
+
+       <button class="btn btn-outline-success" type="submit"> Signin </button>
+
+   </form>
+</div>
+
+{% endblock %}

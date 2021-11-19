@@ -1,0 +1,55 @@
+{% extends 'stockapp/base.html' %}
+{% load static %}
+{% block title %}
+Stockpicker
+{% endblock %}
+
+{% block css %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light"> <!-- navbar-light & bg-light showing light mode-->
+  <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <button class="btn btn-outline-success" type="submit"><a href="{% url 'signin' %}"> Signin </a></button>
+            <button class="btn btn-outline-success" type="submit"><a href="{% url 'signup' %}"> Signup </a></button>
+          <button class="btn btn-outline-success" type="submit"><a href="{% url 'signout' %}"> Signout </a></button>
+      </li>
+      </ul>
+      </div>
+      </div></nav>
+{% for message in messages %}
+<strong class="center"> {{ message }}</strong>
+{% endfor %}
+
+<div class="container">
+    <h1>Welcome {{ fname }}</h1>
+    <h1>Live stock tracker</h1>
+    <p>Select your favourite stcok</p>
+    <form action="{% url 'stocktracker' %}" method="">
+        <label for="stockpicker">Select stock</label>
+        {% csrf_token %}
+    <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example" name="stockpicker"> <!-- form-select-lg is bootstrap class-->
+        {% for stock in stockpicker %}
+        <option value="{{ stock }}">{{ stock }}</option>
+        {% endfor %}
+    </select>
+        </br>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit"> Submit</button>
+
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock %}

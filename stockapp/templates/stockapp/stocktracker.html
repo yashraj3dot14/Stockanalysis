@@ -1,0 +1,58 @@
+{% extends 'stockapp/base.html' %}
+{% load static %}
+{% load myfilters %} <!-- Django custom tag-->
+{% block title %}
+
+Stocktracker
+{% endblock %}
+
+
+
+{% block style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Live stock tracker</h1>
+    <table class="table-container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">SNo.</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Price</th>
+      <th scope="col">Previous close</th>
+      <th scope="col">Open</th>
+      <th scope="col">Market Cap</th>
+      <th scope="col">Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for key,value in data.items %}
+  <tr>
+    <th scope="row">{{ forloop.counter }}</th>
+    <td>{{ key }}</td> <!-- Company name-->
+    <td>{{ value|get:"Quote Price" }}</td> <!-- fetch the data from dictionary of dictionary from myfilters-->
+    <td>{{ value|get:"Previous Close" }}</td>
+    <td>{{ value|get:"Open" }}</td>
+    <td>{{ value|get:"Market Cap" }}</td>
+    <td>{{ value|get:"Volume" }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+
+</table>
+</table>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+</script>
+{% endblock %}
